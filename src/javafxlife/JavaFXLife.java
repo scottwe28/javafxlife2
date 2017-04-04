@@ -124,32 +124,32 @@ public class JavaFXLife extends Application {
         speedMenu.getItems().add(play);
 
         MenuItem faster = new MenuItem("Faster");
-        faster.setAccelerator(KeyCombination.valueOf("Up"));
+        faster.setAccelerator(KeyCombination.keyCombination("Ctrl+Up"));
         faster.setOnAction(e -> lifePane.increaseSpeed());
         speedMenu.getItems().add(faster);
 
         MenuItem fasterx10 = new MenuItem("Faster x 10");
-        fasterx10.setAccelerator(KeyCombination.keyCombination("Ctrl+Up"));
+        fasterx10.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+Up"));
         fasterx10.setOnAction(e -> lifePane.increaseSpeedx10());
         speedMenu.getItems().add(fasterx10);
 
         MenuItem fasterx100 = new MenuItem("Faster x 100");
-        fasterx100.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+Up"));
+        fasterx100.setAccelerator(KeyCombination.keyCombination("Tab"));
         fasterx100.setOnAction(e -> lifePane.increaseSpeedx100());
         speedMenu.getItems().add(fasterx100);
 
         MenuItem slower = new MenuItem("Slower");
-        slower.setAccelerator(KeyCombination.keyCombination("Down"));
+        slower.setAccelerator(KeyCombination.keyCombination("Ctrl+Down"));
         slower.setOnAction(e -> lifePane.decreaseSpeed());
         speedMenu.getItems().add(slower);
 
         MenuItem slowerx10 = new MenuItem("Slower x 10");
-        slowerx10.setAccelerator(KeyCombination.keyCombination("Ctrl+Down"));
+        slowerx10.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+Down"));
         slowerx10.setOnAction(e -> lifePane.decreaseSpeedx10());
         speedMenu.getItems().add(slowerx10);
 
         MenuItem slowerx100 = new MenuItem("Slower x 100");
-        slowerx100.setAccelerator(KeyCombination.keyCombination("Ctrl+Shift+Down"));
+        slowerx100.setAccelerator(KeyCombination.keyCombination("Ctrl+Tab"));
         slowerx100.setOnAction(e -> lifePane.decreaseSpeedx100());
         speedMenu.getItems().add(slowerx100);
 
