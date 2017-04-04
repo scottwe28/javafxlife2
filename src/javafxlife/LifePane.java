@@ -8,8 +8,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.util.Duration;
@@ -19,15 +19,16 @@ import javafx.util.Duration;
  * simulation is represented by a two dimensional array that is a minimum size
  * of 100x100 and a maximum size of the user's screen size. A JavaFX Timeline
  * controls the simulation speed. The results from each new generation is drawn
- * on a canvas which is attached to a Pane. The simulation runs much faster when
- * drawing on a canvas versus placing rectangle objects on a Pane.
+ * on a canvas which is attached to a ScrollPane. The simulation runs much
+ * faster when drawing on a canvas versus placing rectangle objects on a Pane.
  *
  * ToDo: I have not yet figured out a good way to place the canvas / pane into a
- * ScrollPane. Let me know if you figure it out...
+ * ScrollPane. Let me know if you figure it out... Solved: Dr. Lienhard came up
+ * with a solution for getting the ScrollPane working :-)
  *
  * @author John Phillips
  */
-public class LifePane extends Pane {
+public class LifePane extends ScrollPane {
 
     private final int CELLWIDTH = 10;
     private final int CELLHEIGHT = 10;
@@ -68,6 +69,9 @@ public class LifePane extends Pane {
 
         // a canvas is used to display a visual representation of the simulation
         canvas = new Canvas();
+        canvas.setWidth(screenWidth);
+        canvas.setHeight(screenHeight);
+        this.setContent(canvas);
 
         // each rectangular cell can be clicked to turn it on or off
         canvas.setOnMouseClicked((MouseEvent event) -> {
@@ -77,12 +81,6 @@ public class LifePane extends Pane {
             cells[x][y] = cells[x][y] == 0 ? 1 : 0;
             drawCells();
         });
-
-        // must bind canvas to pane or nothing will display
-        canvas.widthProperty().bind(this.widthProperty());
-        canvas.heightProperty().bind(this.heightProperty());
-
-        this.getChildren().add(canvas);
 
         animation = new Timeline(
                 new KeyFrame(Duration.millis(1000), e -> {
