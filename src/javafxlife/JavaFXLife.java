@@ -66,8 +66,9 @@ public class JavaFXLife extends Application {
         final Menu speedMenu = new Menu("Speed");
         final Menu optionsMenu = new Menu("Options");
         final Menu helpMenu = new Menu("Help");
+        final Menu colorMenu = new Menu("Colors");
 
-        myBar.getMenus().addAll(fileMenu, speedMenu, optionsMenu, helpMenu);
+        myBar.getMenus().addAll(fileMenu, speedMenu, optionsMenu, helpMenu, colorMenu);
 
         /**
          * *********************************************************************
@@ -167,20 +168,28 @@ public class JavaFXLife extends Application {
         color.setOnAction(e -> lifePane.setShowColors(color.isSelected()));
         optionsMenu.getItems().add(color);
 
+        CheckMenuItem red = new CheckMenuItem("Red");
+        red.setOnAction(e -> lifePane.setRed(red.isSelected()));
+        CheckMenuItem green = new CheckMenuItem("Green");
+        green.setOnAction(e -> lifePane.setGreen(green.isSelected()));
+        CheckMenuItem blue = new CheckMenuItem("Blue");
+        blue.setOnAction(e -> lifePane.setBlue(blue.isSelected()));
+
+        colorMenu.getItems().addAll(red, green, blue);
+
         /**
          * *********************************************************************
          * Help Menu Section
          */
-        
-        MenuItem jp = new MenuItem("JP");
+        MenuItem jp = new MenuItem("WS");
         jp.setOnAction(e -> {
             lifePane.pause();
             lifePane.clearCells();
-            readFile(new File("jp.txt"));
+            readFile(new File("ws.txt"));
             lifePane.drawCells();
         });
-        helpMenu.getItems().add(jp);        
-        
+        helpMenu.getItems().add(jp);
+
         MenuItem acorn = new MenuItem("Acorn");
         acorn.setOnAction(e -> {
             lifePane.pause();
